@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Child from './components/Child';
+import Button from './components/Button';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState('Click the button!');
+
+  const incrementCount = () => setCount(count + 1);
+  const updateMessage = () => setMessage('You clicked the button!');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Debugging Task</h1>
+      <p>Current Count: {count}</p>
+      <Child count={count} />
+      <Button onClick={incrementCount} />
+      <div className="message-section">
+        <h3>{message}</h3>
+        <button onClick={updateMessage}>Change Message</button>
+      </div>
     </div>
   );
 }
